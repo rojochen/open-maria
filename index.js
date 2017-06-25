@@ -1,14 +1,15 @@
 'use strict'
 var app = require('express')();
 var server = require('http').Server(app);
-var token = require('./token.json'); // no need to add the .json extension
-var LINEBot = require('line-messaging');
+const LINEBot = require('line-messaging');
+var taskService = require('./service/task-service.js');
+var lineService = require('./service/line-service.js');
+var bot = lineService.create(server)
 
-var bot = LINEBot.create({
-  channelID: token.channelID,
-  channelSecret: token.accessToken,
-  channelToken: token.channelSecret
-}, server);
+
+//Cron工作排程
+//actions();
+
 const logger = (req,res,next)=>{
   console.log(new Date(),req.method,req.url);
   next();
@@ -21,12 +22,26 @@ const headerProcess = (req,res,next) => {
 app.use(headerProcess);
 app.use(bot.webhook('/webhook'));
 app.use(logger);
-
+global.users = new Map();
 //add routes
-app.get('/',function(request, response){ //我們要處理URL為 "/" 的HTTP GET請求
-    response.end('你好！'); //作出回應
+app.get('/',function(request, response){ 
+    response.end('你好！');
 });
 //event binding
+bot.on(LINEBot.Events.FOLLOW,(replyToken,source)=>{
+  console.log(source.getUserId);
+  //save user id;
+  let userId = source.getUserId();
+  global.users.set(userId,source);
+  bot.pushTextMessage(userId,"歡迎試一試");
+});
+bot.on(LINEBot.Events.UNFOLLOW,(replyToken,source)=>{
+  console.log(source.getUserId);
+  //save user id;
+  let userId = source.getUserId();
+  global.users[userId] = null;
+    
+});
 bot.on(LINEBot.Events.MESSAGE, function(replyToken, message) {
   // add code below.
   console.log(message);
@@ -46,6 +61,8 @@ bot.on(LINEBot.Events.MESSAGE, function(replyToken, message) {
     // add your code when error.
   });
 });
+
 server.listen(3003,()=>{
   console.log('server start!')
+  taskService.init();
 });
