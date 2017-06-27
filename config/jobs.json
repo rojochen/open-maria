@@ -1,0 +1,34 @@
+[
+    {
+        "no":"0900",
+        "name":"alertTakeMedicine",
+        "action":"alertTakeMedicine",
+        "description":"準備吃藥",
+        "time":"5 * * * * *"
+    },
+     {
+        "no":"0900",
+        "name":"alertStandUp",
+        "action":"alertStandUp",
+        "description":"翻身",
+        "time":"5 * * * * *"
+    },{
+        "no":"1120",
+         "name":"askChangingdiaper",
+        "action":"askChangingdiaper",
+        "description":"換尿布",
+        "time":"5 * * * * *"
+    },{
+        "no":"1200",
+        "name":"alertEatingLunch",
+        "action":"alertEatingLunch",
+        "description":"吃飯",
+        "time":"5 * * * * *"
+    },{
+        "no":"1255",
+        "name":"aksLunchState",
+        "action":"aksLunchState",
+        "description":"詢問吃飯情況",
+        "time":"5 * * * * *"
+    }
+]
