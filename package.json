@@ -17,10 +17,12 @@
     "url": "https://github.com/rojochen/open-maria/issues"
   },
   "homepage": "https://github.com/rojochen/open-maria#readme",
-
   "dependencies": {
     "line-messaging": "^1.1.8",
     "node-schedule": "^1.2.3",
-       "express": "^4.15.3"
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "envs": "^0.1.6"
   }
 }
