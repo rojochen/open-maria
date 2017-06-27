@@ -11,24 +11,24 @@
         "name":"alertStandUp",
         "action":"alertStandUp",
         "description":"翻身",
-        "time":"5 * * * * *"
+        "time":"10 * * * * *"
     },{
         "no":"1120",
          "name":"askChangingdiaper",
         "action":"askChangingdiaper",
         "description":"換尿布",
-        "time":"5 * * * * *"
+        "time":"15 * * * * *"
     },{
         "no":"1200",
         "name":"alertEatingLunch",
         "action":"alertEatingLunch",
         "description":"吃飯",
-        "time":"5 * * * * *"
+        "time":"30 * * * * *"
     },{
         "no":"1255",
         "name":"aksLunchState",
         "action":"aksLunchState",
         "description":"詢問吃飯情況",
-        "time":"5 * * * * *"
+        "time":"40 * * * * *"
     }
 ]
