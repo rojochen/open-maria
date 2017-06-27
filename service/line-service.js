@@ -1,5 +1,5 @@
 var LINEBot = require('line-messaging');
-const token = require('./token.json'); // no need to add the .json extension
+const token = require('./token.js');
 global._bot = null;
 
 const lineService = {
@@ -7,15 +7,15 @@ const lineService = {
         if(server===null || server===undefined){
             throw "express server is null or undefined";
         }else{
-            if(!global.bot){
-                global.bot = LINEBot.create({
+            if(!global._bot){
+                global._bot = LINEBot.create({
                     channelID: token.channelID,
                     channelSecret: token.accessToken,
                     channelToken: token.channelSecret
                 }, server);
             }
         }
-        return global.bot;
+        return global._bot;
         
     },
     get: () => {

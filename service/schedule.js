@@ -1,8 +1,6 @@
 var nodeSchedule = require('node-schedule');
 var tasks = require('./tasks.js')
-nodeSchedule.scheduleJob('5 * * * * *', function(){
-        console.log('scheduleCronstyle:' + new Date());
-}); 
+
 const Schedule = {
     list:[],
     add:function(cronJobTime,name,action){
